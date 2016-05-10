@@ -1,0 +1,12 @@
+﻿@model Dictionary<string, float>
+
+@{
+    ViewBag.Title = "Forecast";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Hello</h1>
+
+Wind Speed: @Model["wind"] m/s^2
+<br />
+Temperature: @Model["temp"] celcius
