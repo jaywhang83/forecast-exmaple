@@ -26,6 +26,7 @@ namespace Forecast.Models
             for (int i = 0; i < 7; i++)
             {
                 var loc = new Dictionary<string, string>();
+                loc.Add("date", DateTime.Now.AddDays(i).ToString("dddd, MMMM dd, yyyy")); 
                 loc.Add("maxTemp", response.daily.data[i].temperatureMax.ToString());
                 loc.Add("minTemp", response.daily.data[i].temperatureMin.ToString());
                 loc.Add("summary", response.daily.data[i].summary);
