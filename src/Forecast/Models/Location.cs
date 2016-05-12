@@ -16,26 +16,25 @@ namespace Forecast.Models
         public float Latitude;
         public float Longitude;
 
-        public static Dictionary<string,float> GetLocations()
+        public static List<Dictionary<string, string>> GetLocations()
         {
-            var request = new ForecastIORequest(EnvironmentVariables.apiKey, 45.520705f, -122.677397f, Unit.si);
+            var request = new ForecastIORequest(EnvironmentVariables.apiKey, 45.520705f, -122.677397f, Unit.us);
             var response = request.Get();
-            var current = response.currently;
-            var loc = new Dictionary<string, float>();
-            loc.Add("temp", response.currently.temperature);
-            loc.Add("wind", response.currently.windSpeed);
-            return loc;
+            dynamic daily = response.daily.data;
+            //var loc = new Dictionary<string, string>();
+            var list = new List<Dictionary<string, string>>(); 
+            for (int i = 0; i < 7; i++)
+            {
+                var loc = new Dictionary<string, string>();
+                loc.Add("maxTemp", response.daily.data[i].temperatureMax.ToString());
+                loc.Add("minTemp", response.daily.data[i].temperatureMin.ToString());
+                loc.Add("summary", response.daily.data[i].summary);
+                list.Add(loc); 
+            }
+
+
+            return list; 
         }
-
-        //public void Send()
-        //{
-        //    var request = new ForecastIORequest(EnvironmentVariables.apiKey, Latitude, Longitude, Unit.si);
-
-        //    Latitude.ToString();
-        //    Longitude.ToString();
-        //    request.AddParameter("Latitude", Latitude);
-        //    request.("Longitude", Longitude);
-        //}
 
     }
 }

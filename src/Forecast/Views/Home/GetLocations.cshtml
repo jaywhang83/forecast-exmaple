@@ -1,4 +1,4 @@
-﻿@model Dictionary<string, float>
+﻿@model List<Dictionary<string, string>>
 
 @{
     ViewBag.Title = "Forecast";
@@ -6,10 +6,21 @@
 }
 
 <h1>Hello</h1>
+@foreach (var weather in Model)
+{
+  
+        <ul>
+            <li>Min Temperature: @weather["minTemp"]</li>
+     
+            <li>Max Temperature: @weather["maxTemp"]</li>
+    
+            <li>Weather Summary: @weather["summary"]</li>
+            <hr/>
+        </ul>
 
-Wind Speed: @Model["wind"] m/s^2
-<br />
-Temperature: @Model["temp"] celcius
+
+
+}
 
 
 

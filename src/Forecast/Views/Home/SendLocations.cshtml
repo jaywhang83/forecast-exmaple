@@ -31,7 +31,7 @@
                     
                 $.getJSON("https://api.forecast.io/forecast/" + "@Forecast.Models.EnvironmentVariables.apiKey" + "/" + lat + "," + long + "?callback=?", function (json) {
                     console.log(json);
-                    $('.result').html('<p> Temperature: ' + json.currently.temperature + " °C" + '<br />' + "Windspeed: " + json.currently.windSpeed + " m/s²" + '</p>');
+                    $('.result').html('<p> Temperature: ' + json.currently.temperature + " °F" + '<br />' + "Windspeed: " + json.currently.windSpeed + " m/s²" + '</p>');
 
                 });
             }
