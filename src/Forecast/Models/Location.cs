@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using ForecastIO;
+using ForecastIO.Extensions;
+using RestSharp;
+using Microsoft.Data.Entity.Storage;
 
 namespace Forecast.Models
 {
     public class Location
     {
-        public float windSpeed { get; set; }
-        public float temperature { get; set; }
+        public float Latitude;
+        public float Longitude;
 
         public static Dictionary<string,float> GetLocations()
         {
@@ -23,6 +26,16 @@ namespace Forecast.Models
             loc.Add("wind", response.currently.windSpeed);
             return loc;
         }
+
+        //public void Send()
+        //{
+        //    var request = new ForecastIORequest(EnvironmentVariables.apiKey, Latitude, Longitude, Unit.si);
+
+        //    Latitude.ToString();
+        //    Longitude.ToString();
+        //    request.AddParameter("Latitude", Latitude);
+        //    request.("Longitude", Longitude);
+        //}
 
     }
 }

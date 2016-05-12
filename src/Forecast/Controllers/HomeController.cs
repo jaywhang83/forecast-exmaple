@@ -22,5 +22,10 @@ namespace Forecast.Controllers
             var allLocations = Location.GetLocations();
             return View(allLocations);
         }
+
+        public IActionResult SendLocations()
+        {
+            return View();
+        }
     }
 }

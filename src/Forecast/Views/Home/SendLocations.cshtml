@@ -1,0 +1,41 @@
+﻿@model Forecast.Models.Location
+
+@{
+    ViewBag.Title = "Send";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Send location details!</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Latitude)
+    @Html.TextBoxFor(model => model.Latitude)
+    @Html.LabelFor(model => model.Longitude, new class {  })
+    @Html.TextBoxFor(model => model.Longitude)
+    <input onclick="b()" class="sendResult" type="submit" value="Send!"/>
+}
+
+<div class="result">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.sendResult').click(function () {
+            var result = function () {
+                var lat = Model.Latitude;
+                var long = Model.Longitude;
+                console.log(lat, long);
+                    
+                $.getJSON("https://api.forecast.io/forecast/" + EnvironmentVariables.apiKey + "/" + lat + "," + long + "?callback=?", function (json) {
+                    console.log(json);
+                    $('.result').html('<p>' + json.currently.temperature + '</p>');
+                });
+            }
+        });
+    });
+</script>
+
+
+@Html.ActionLink("Home", "Index")
+

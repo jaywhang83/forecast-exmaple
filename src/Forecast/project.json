@@ -5,6 +5,7 @@
   },
 
   "dependencies": {
+    "EntityFramework.Relational": "7.0.0-rc1-final",
     "Forecast.io": "1.0.9",
     "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
     "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
