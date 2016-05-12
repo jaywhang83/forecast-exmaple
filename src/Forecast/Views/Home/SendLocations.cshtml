@@ -7,31 +7,35 @@
 
 <h2>Send location details!</h2>
 <hr />
-@using (Html.BeginForm())
-{
+<form>
     @Html.LabelFor(model => model.Latitude)
     @Html.TextBoxFor(model => model.Latitude)
-    @Html.LabelFor(model => model.Longitude, new class {  })
+    <br /><br />
+    @Html.LabelFor(model => model.Longitude)
     @Html.TextBoxFor(model => model.Longitude)
-    <input onclick="b()" class="sendResult" type="submit" value="Send!"/>
-}
+    <br /><br />
+    <input class="sendResult" type="submit" value="Send!" />
+</form>
 
 <div class="result">
 </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.sendResult').click(function () {
+        $('.sendResult').click(function (event) {
+            event.preventDefault();
             var result = function () {
-                var lat = Model.Latitude;
-                var long = Model.Longitude;
+                var lat = $("#Latitude").val();
+                var long = $("#Longitude").val();
                 console.log(lat, long);
                     
-                $.getJSON("https://api.forecast.io/forecast/" + EnvironmentVariables.apiKey + "/" + lat + "," + long + "?callback=?", function (json) {
+                $.getJSON("https://api.forecast.io/forecast/" + "@Forecast.Models.EnvironmentVariables.apiKey" + "/" + lat + "," + long + "?callback=?", function (json) {
                     console.log(json);
-                    $('.result').html('<p>' + json.currently.temperature + '</p>');
+                    $('.result').html('<p> Temperature: ' + json.currently.temperature + " °C" + '<br />' + "Windspeed: " + json.currently.windSpeed + " m/s²" + '</p>');
+
                 });
             }
+            result();
         });
     });
 </script>
