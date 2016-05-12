@@ -9,18 +9,15 @@
 @foreach (var weather in Model)
 {
   
-        <ul>
-            <p>Date: @weather["date"]</p>
-            <li>Min Temperature: @weather["minTemp"]</li>
+    <ul>
+        <p>Date: @weather["date"]</p>
+        <li>Min Temperature: @weather["minTemp"]</li>
      
-            <li>Max Temperature: @weather["maxTemp"]</li>
+        <li>Max Temperature: @weather["maxTemp"]</li>
     
-            <li>Weather Summary: @weather["summary"]</li>
-            <hr/>
-        </ul>
-
-
-
+        <li>Weather Summary: @weather["summary"]</li>
+        <hr/>
+    </ul>
 }
 
 

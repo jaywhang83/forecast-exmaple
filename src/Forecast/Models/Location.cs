@@ -21,7 +21,6 @@ namespace Forecast.Models
             var request = new ForecastIORequest(EnvironmentVariables.apiKey, 45.520705f, -122.677397f, Unit.us);
             var response = request.Get();
             dynamic daily = response.daily.data;
-            //var loc = new Dictionary<string, string>();
             var list = new List<Dictionary<string, string>>(); 
             for (int i = 0; i < 7; i++)
             {
@@ -32,10 +31,7 @@ namespace Forecast.Models
                 loc.Add("summary", response.daily.data[i].summary);
                 list.Add(loc); 
             }
-
-
             return list; 
         }
-
     }
 }
